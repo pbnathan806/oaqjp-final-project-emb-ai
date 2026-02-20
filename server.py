@@ -16,18 +16,21 @@ def emot_detector():
     # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
 
-    # Extract the score for different emotions from the response
-    joy_score = response['joy']
-    anger_score = response['anger']
-    disgust_score = response['disgust']
-    sadness_score = response['sadness']
-    fear_score = response['fear']
-    dominant_emotion = response['dominant_emotion']
+    if response['dominant_emotion'] is None:
 
-    # Return a formatted string with the emotional scores and dominant emotion
-    
+        return "Invalid text! Please try again."
 
-    return "For the given statement, the system response is 'anger': {} , 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}.".format(anger_score,disgust_score,fear_score,joy_score,sadness_score,dominant_emotion)
+    else:
+        # Extract the score for different emotions from the response
+        joy_score = response['joy']
+        anger_score = response['anger']
+        disgust_score = response['disgust']
+        sadness_score = response['sadness']
+        fear_score = response['fear']
+        dominant_emotion = response['dominant_emotion']
+
+        # Return a formatted string with the emotional scores and dominant emotion
+        return "For the given statement, the system response is 'anger': {} , 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}.".format(anger_score,disgust_score,fear_score,joy_score,sadness_score,dominant_emotion)
 
 
 if __name__ == "__main__":
