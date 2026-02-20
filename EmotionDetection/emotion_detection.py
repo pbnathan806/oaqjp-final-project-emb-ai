@@ -16,12 +16,16 @@ def emotion_detector(text_to_analyse):  # Define a function named emotion_detect
 
     # Parsing the JSON response from the API
     formatted_response = json.loads(response.text)
-    print(formatted_response)
-
+    
+    # Extracting the emotion predictions list from the formatted response dictionary
     emotionPredictions = formatted_response ['emotionPredictions']
 
+    # Extracting the emotion dictionary from the emotion predictions list
     emotion = (emotionPredictions [0])['emotion']
 
+    # Based on the score, adding the dominant emotion to the emotion dictionary  
     emotion ['dominant_emotion'] = max(emotion, key=emotion.get)
 
+    # Returning a dictionary containing emotion detection results
+    
     return emotion  # Return the response text from the API
