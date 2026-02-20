@@ -20,16 +20,8 @@ def emotion_detector(text_to_analyse):  # Define a function named emotion_detect
 
     emotionPredictions = formatted_response ['emotionPredictions']
 
-    anger_score =  emotionPredictions['anger']
-    print(anger_score)
-    disgust_score = emotionPredictions['disgust']
-    print(disgust_score)
-    fear_score = emotionPredictions['fear']
-    print(fear_score)
-    joy_score = emotionPredictions['joy']
-    print(joy_score)
-    sadness_score = emotionPredictions['sadness']
-    print(sadness_score)
-    print('------------------')
+    emotion = (emotionPredictions [0])['emotion']
 
-    return response.text  # Return the response text from the API
+    emotion ['dominant_emotion'] = max(emotion, key=emotion.get)
+
+    return emotion  # Return the response text from the API
